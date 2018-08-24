@@ -1,14 +1,18 @@
 <template>
   <li v-bind:class="todo.done ? 'done' : 'open'">
       {{todo.title}}
-      <span v-if="todo.done" v-on:click="toggleState(todo.id)">✔</span>
-      <span v-else @click="toggleState(todo.id)">✘</span>
+      <span v-if="todo.done" v-on:click="toggleDone(todo)">✔</span>
+      <span v-else @click="toggleDone(todo)">✘</span>
     </li>
 </template>
 
 <script>
+import { TOGGLE_DONE } from '../store.js';
+import { mapMutations, mapActions } from 'vuex';
+
 export default {
   props: ['todo'],
+  methods: mapActions({ toggleDone: TOGGLE_DONE }),
 };
 </script>
 

@@ -1,25 +1,42 @@
 <template>
-  <ul>
-    <TodoListItem v-for="todo in todos" v-bind:todo="todo" 
-     v-bind:key="todo.id"></TodoListItem>
-  </ul>
+  <div>
+    <Button v-on:click="toggleFilter()">Filter</Button>
+    <ul>
+      <TodoListItem v-for="todo in getTodos()" v-bind:todo="todo" 
+      v-bind:key="todo.id"></TodoListItem>
+    </ul>
+  </div>
 </template>
 
 
 <script>
 import TodoListItem from './TodoListItem.vue';
+import { mapState, mapGetters, mapActions } from 'vuex';
+import { GET_TODOS } from '../store';
 
 export default {
   name: 'TodoList',
   components: { TodoListItem },
   data() {
     return {
-      todos: [
-        { id: 1, title: 'Get up', done: true },
-        { id: 2, title: 'Eat', done: true },
-        { id: 3, title: 'Sleep', done: false },
-      ],
+      showOnlyOpen: false,
     };
+  },
+  methods: {
+    toggleFilter() {
+      this.showOnlyOpen = !this.showOnlyOpen;
+    },
+    getTodos() {
+      return this.showOnlyOpen ? this.openTodos : this.todos;
+    },
+    ...mapActions({ fetchTodos: GET_TODOS }),
+  },
+  computed: {
+    ...mapState(['todos']),
+    ...mapGetters(['openTodos']),
+  },
+  mounted() {
+    this.fetchTodos();
   },
 };
 </script>
