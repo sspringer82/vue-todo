@@ -11,8 +11,11 @@
 
 <script>
 import TodoListItem from './TodoListItem.vue';
-import { mapState, mapGetters, mapActions } from 'vuex';
-import { GET_TODOS } from '../store';
+import { createNamespacedHelpers } from 'vuex';
+
+import { GET_TODOS } from '../todo';
+
+const { mapState, mapGetters, mapActions } = createNamespacedHelpers('todo');
 
 export default {
   name: 'TodoList',
@@ -27,6 +30,9 @@ export default {
       this.showOnlyOpen = !this.showOnlyOpen;
     },
     getTodos() {
+      setTimeout(() => {
+        console.log(this.$store.state.todo.todos);
+      }, 1000);
       return this.showOnlyOpen ? this.openTodos : this.todos;
     },
     ...mapActions({ fetchTodos: GET_TODOS }),

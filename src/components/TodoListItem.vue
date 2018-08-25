@@ -7,8 +7,10 @@
 </template>
 
 <script>
-import { TOGGLE_DONE } from '../store.js';
-import { mapMutations, mapActions } from 'vuex';
+import { TOGGLE_DONE } from '../todo';
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapActions } = createNamespacedHelpers('todo');
 
 export default {
   props: ['todo'],
