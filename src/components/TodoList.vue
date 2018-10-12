@@ -30,9 +30,6 @@ export default {
       this.showOnlyOpen = !this.showOnlyOpen;
     },
     getTodos() {
-      setTimeout(() => {
-        console.log(this.$store.state.todo.todos);
-      }, 1000);
       return this.showOnlyOpen ? this.openTodos : this.todos;
     },
     ...mapActions({ fetchTodos: GET_TODOS }),
