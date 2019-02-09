@@ -9,15 +9,15 @@
     "server": "json-server --watch data.json"
   },
   "dependencies": {
-    "json-server": "^0.14.0",
-    "vue": "^2.5.17",
-    "vuex": "^3.0.1"
+    "json-server": "^0.14.2",
+    "vue": "^2.6.4",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.1",
-    "@vue/cli-plugin-eslint": "^3.0.1",
-    "@vue/cli-service": "^3.0.1",
-    "vue-template-compiler": "^2.5.17"
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "vue-template-compiler": "^2.6.4"
   },
   "eslintConfig": {
     "root": true,
