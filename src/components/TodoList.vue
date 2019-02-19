@@ -2,27 +2,28 @@
   <div>
     <Button v-on:click="toggleFilter()">Filter</Button>
     <ul>
-      <TodoListItem v-for="todo in getTodos()" v-bind:todo="todo" 
-      v-bind:key="todo.id"></TodoListItem>
+      <TodoListItem v-for="todo in getTodos()" v-bind:todo="todo" v-bind:key="todo.id"></TodoListItem>
     </ul>
+    <Form/>
   </div>
 </template>
 
 
 <script>
-import TodoListItem from './TodoListItem.vue';
-import { createNamespacedHelpers } from 'vuex';
+import TodoListItem from "./TodoListItem.vue";
+import Form from "./Form.vue";
+import { createNamespacedHelpers } from "vuex";
 
-import { GET_TODOS } from '../todo';
+import { GET_TODOS } from "../todo";
 
-const { mapState, mapGetters, mapActions } = createNamespacedHelpers('todo');
+const { mapState, mapGetters, mapActions } = createNamespacedHelpers("todo");
 
 export default {
-  name: 'TodoList',
-  components: { TodoListItem },
+  name: "TodoList",
+  components: { TodoListItem, Form },
   data() {
     return {
-      showOnlyOpen: false,
+      showOnlyOpen: false
     };
   },
   methods: {
@@ -32,15 +33,15 @@ export default {
     getTodos() {
       return this.showOnlyOpen ? this.openTodos : this.todos;
     },
-    ...mapActions({ fetchTodos: GET_TODOS }),
+    ...mapActions({ fetchTodos: GET_TODOS })
   },
   computed: {
-    ...mapState(['todos']),
-    ...mapGetters(['openTodos']),
+    ...mapState(["todos"]),
+    ...mapGetters(["openTodos"])
   },
   mounted() {
     this.fetchTodos();
-  },
+  }
 };
 </script>
 
